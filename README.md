@@ -1,1 +1,1 @@
-My first Laravel project
+My first Laravel project.
