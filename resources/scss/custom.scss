@@ -1,0 +1,13 @@
+/* custom.scss */
+$primary: #008015;
+$danger:  #f10000;
+
+
+
+
+body {
+	font-family: "Lato", sans-serif;
+}
+/* end custom.scss */
+
+@import "../node_modules/bootstrap/scss/bootstrap";

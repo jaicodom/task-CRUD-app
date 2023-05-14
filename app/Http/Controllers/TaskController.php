@@ -14,7 +14,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::latest()->get();
+        $tasks = Task::latest()->get(); // "latest()" method bring the tasks, in ascendent order
         return view('tasks.index', ['tasks' => $tasks]);
     }
 

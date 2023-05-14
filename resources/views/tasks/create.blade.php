@@ -31,7 +31,7 @@
   </div>
 
   <div class="mb-3 w-25">
-    <input type="date" class="form-control" name="due_date">
+    <input type="datetime-local" class="form-control" name="due_date">
   </div>
 
   <div class="mb-3 w-25">
@@ -44,6 +44,9 @@
   </div>
 
   <button type="submit" class="btn btn-primary">Create Task</button>
+  <button type="reset" class="btn btn-warning">Reset</button>
+  <a href="{{route('tasks.index')}}" class="btn btn-info">Back</a>
+
 </form>
 
 @endsection
