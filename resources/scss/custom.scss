@@ -1,13 +1,23 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
 /* custom.scss */
-$primary: #008015;
-$danger:  #f10000;
 
+// Create your own map
+$custom-colors: (
+  "clr-navbar": #00a19c,
+	"clr-completed": #00a128,
+	"clr-undone": #e34141,
+	"clr-inprogress": #f1ff72,
+	"clr-background": #dcdcdc,
+);
 
-
-
-body {
-	font-family: "Lato", sans-serif;
-}
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
 /* end custom.scss */
 
+
+
+
+
 @import "../node_modules/bootstrap/scss/bootstrap";
+

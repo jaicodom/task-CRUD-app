@@ -20,28 +20,42 @@
 
 @endif
 
-@foreach ($tasks as $task )
 
-<div class="d-inline-flex">
-  <div class="card m-4" style="width: 18rem;height: 300px;">
 
-    <div class="card-body">
+<table class="table table-hover border border-3 border-warning bg-light">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Created at</th>
+      <th>Finish date</th>
+      <th>Actions</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach ($tasks as $task )
+    <tr class="mb-2">
+      <td>{{$task->title}}</td>
+      <td>{{$task->description}}</td>
+      <td @class( [ 'card-text' , 'bg-clr-inprogress'=> $task->status == 'In progress',
+        'bg-clr-undone' => $task->status == 'Undone',
+        'bg-clr-completed'=> $task->status == 'Completed'
+        ])>{{$task->status}}</td>
+      <td>{{$task->created_at}}</td>
+      <td>{{$task->due_date}}</td>
+      <td>Edit</td>
+      <td>Delete</td>
+    </tr>
 
-      <h5 class="card-title"> {{$task->title}}</h5>
-      <p class="card-text">{{$task->description}}</p>
-      <p class="card-text">{{$task->created_at}}</p>
-      <small class="card-text">{{$task->due_date}}</small>
-      <small @class( [ 'card-text' , 'bg-warning'=> $task->status == 'In progress',
-        'bg-danger' => $task->status == 'Undone',
-        'bg-success'=> $task->status == 'Completed'
+    @endforeach
+  </tbody>
+</table>
 
-        ])>Status: {{$task->status}}</small>
 
-    </div>
-  </div>
-</div>
-
-@endforeach
+{{-- add a Pagination to the task index query: --}}
+{{$tasks->links()}}
 
 
 

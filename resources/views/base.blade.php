@@ -9,8 +9,8 @@
   @vite(['resources/scss/custom.scss', 'resources/js/app.js'])
 </head>
 
-<body class="bg-secondary">
-  <nav class="navbar navbar-expand-lg bg-light">
+<body class="bg-clr-background">
+  <nav class="navbar navbar-expand-lg bg-clr-navbar">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Navbar</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

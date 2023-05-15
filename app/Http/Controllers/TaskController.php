@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 
 class TaskController extends Controller
@@ -12,16 +13,16 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        $tasks = Task::latest()->get(); // "latest()" method bring the tasks, in ascendent order
+        $tasks = Task::latest()->paginate(5); // "latest()" method bring the tasks, in ascendent order
         return view('tasks.index', ['tasks' => $tasks]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         return view('tasks.create');
     }
@@ -53,7 +54,6 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
     }
 
     /**
