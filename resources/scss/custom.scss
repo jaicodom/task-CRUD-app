@@ -1,22 +1,26 @@
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
+
+
 /* custom.scss */
 
 // Create your own map
+
 $custom-colors: (
-  "clr-navbar": #00a19c,
+  "clr-navbar": #008985,
 	"clr-completed": #00a128,
 	"clr-undone": #e34141,
-	"clr-inprogress": #f1ff72,
-	"clr-background": #dcdcdc,
+	"clr-inprogress": #fadc33,
+	"clr-background": #2a2a2a,
 );
 
 // Merge the maps
 $theme-colors: map-merge($theme-colors, $custom-colors);
+
+
+
+
 /* end custom.scss */
-
-
-
 
 
 @import "../node_modules/bootstrap/scss/bootstrap";

@@ -20,30 +20,31 @@
 
 
 </div>
-<form action="{{route('tasks.store')}}" method="POST">
+<form action="{{route('tasks.update', $task)}}" method="POST">
   @csrf
+  @method('PUT')
   <div class="mb-3 w-25">
-    <input type="text" class="form-control" placeholder="Title" name="title">
+    <input type="text" class="form-control" placeholder="Title" name="title" value="{{$task->title}}">
   </div>
 
   <div class="mb-3 w-50">
-    <textarea class="form-control" placeholder="Description" name="description"></textarea>
+    <textarea class="form-control" name="description">{{$task->description}}</textarea>
   </div>
 
   <div class="mb-3 w-25">
-    <input type="datetime-local" class="form-control" name="due_date">
+    <input type="datetime-local" class="form-control" name="due_date" value="{{$task->due_date}}">
   </div>
 
   <div class="mb-3 w-25">
     <select class="form-select" name='status'>
-
+      <option selected value="{{$task->status}}">{{$task->status}}</option>
       <option value="In progress">In progress</option>
       <option value="Completed">Completed</option>
-      <option selected value="Undone">Undone</option>
+      <option value="Undone">Undone</option>
     </select>
   </div>
 
-  <button type="submit" class="btn btn-clr-completed">Create Task</button>
+  <button type="submit" class="btn btn-clr-completed">Save Task</button>
   <button type="reset" class="btn btn-warning">Reset</button>
   <a href="{{route('tasks.index')}}" class="btn btn-info">Back</a>
 

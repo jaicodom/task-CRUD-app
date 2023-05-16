@@ -11,8 +11,10 @@
 </style>
 
 @section('content')
+<div>
+  <a href="{{route('tasks.create')}}" class="btn btn-clr-completed m-4 text-light">Create Task</a>
+</div>
 
-<a href="{{route('tasks.create')}}" class="btn btn-success m-4">Create Task</a>
 
 @if (Session::get('success'))
 
@@ -38,15 +40,33 @@
     @foreach ($tasks as $task )
     <tr class="mb-2">
       <td>{{$task->title}}</td>
-      <td>{{$task->description}}</td>
-      <td @class( [ 'card-text' , 'bg-clr-inprogress'=> $task->status == 'In progress',
+
+      <td class="w-25">{{$task->description}}</td>
+
+      <td @class( [ 
+        'card-text', 
+        'bg-clr-inprogress'=> $task->status == 'In progress',
         'bg-clr-undone' => $task->status == 'Undone',
         'bg-clr-completed'=> $task->status == 'Completed'
         ])>{{$task->status}}</td>
+
       <td>{{$task->created_at}}</td>
+
       <td>{{$task->due_date}}</td>
-      <td>Edit</td>
-      <td>Delete</td>
+
+      <td>
+
+        <a href="{{route('tasks.edit', $task)}}" class="btn btn-clr-inprogress">Edit</a>
+      
+        
+      </td>
+      <td>
+            <form action="{{route('tasks.destroy', $task)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
     </tr>
 
     @endforeach
@@ -55,6 +75,7 @@
 
 
 {{-- add a Pagination to the task index query: --}}
+
 {{$tasks->links()}}
 
 
