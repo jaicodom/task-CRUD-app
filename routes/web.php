@@ -15,8 +15,12 @@ use Illuminate\Routing\Route as RoutingRoute;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('tasks.filter');
+// });
 
 Route::resource('tasks', TaskController::class);
+
+
+//          URi           Controller           Method                    
+Route::get('tasks/status/{task_status}', [TaskController::class, 'filter'])->name('status');

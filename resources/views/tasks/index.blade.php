@@ -1,18 +1,20 @@
 @extends('base')
-<style>
-  .card {
-    transition: all 0.3s;
 
-  }
-
-  .card:hover {
-    transform: scale(1.05);
-  }
-</style>
 
 @section('content')
+
 <div>
-  <a href="{{route('tasks.create')}}" class="btn btn-clr-completed m-4 text-light">Create Task</a>
+  <a href="{{route('tasks.create')}}" class="btn btn-info mt-4">Create Task</a>
+  <span class="nav-link dropdown-toggle text-light" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Filter by Status
+  </span>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="{{route('tasks.index')}}">All</a></li>
+    <li><a class="dropdown-item" href="{{route('status', 'Undone')}}">Undone</a></li>
+    <li><a class="dropdown-item" href="{{route('status', 'In progress')}}">In progress</a></li>
+    <li><a class="dropdown-item" href="{{route('status', 'Completed')}}">Completed</a></li>
+  </ul>
+
 </div>
 
 
@@ -38,14 +40,12 @@
   </thead>
   <tbody>
     @foreach ($tasks as $task )
-    <tr class="mb-2">
+    <tr>
       <td>{{$task->title}}</td>
 
-      <td class="w-25">{{$task->description}}</td>
+      <td>{{$task->description}}</td>
 
-      <td @class( [ 
-        'card-text', 
-        'bg-clr-inprogress'=> $task->status == 'In progress',
+      <td @class( [ 'card-text' , 'bg-clr-inprogress'=> $task->status == 'In progress',
         'bg-clr-undone' => $task->status == 'Undone',
         'bg-clr-completed'=> $task->status == 'Completed'
         ])>{{$task->status}}</td>
@@ -57,21 +57,23 @@
       <td>
 
         <a href="{{route('tasks.edit', $task)}}" class="btn btn-clr-inprogress">Edit</a>
-      
-        
+
+
       </td>
       <td>
-            <form action="{{route('tasks.destroy', $task)}}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </td>
+        <form action="{{route('tasks.destroy', $task)}}" method="post">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </td>
     </tr>
 
     @endforeach
   </tbody>
 </table>
+
+
 
 
 {{-- add a Pagination to the task index query: --}}

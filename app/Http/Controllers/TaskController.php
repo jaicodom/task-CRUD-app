@@ -16,6 +16,7 @@ class TaskController extends Controller
     public function index(): View
     {
         $tasks = Task::latest()->paginate(5); // "latest()" method bring the tasks, in ascendent order
+
         return view('tasks.index', ['tasks' => $tasks]);
     }
 
@@ -54,14 +55,14 @@ class TaskController extends Controller
      */
     public function edit(Task $task): View
     {
-        
+
         return view('tasks.edit', ['task' => $task]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task):RedirectResponse
+    public function update(Request $request, Task $task): RedirectResponse
     {
         // validation:
 
@@ -77,9 +78,18 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task):RedirectResponse
+    public function destroy(Task $task): RedirectResponse
     {
         $task->delete();
         return redirect()->route('tasks.index')->with('success', 'Task deleted!');
+    }
+
+    /**
+     * Filter Tasks by Status.
+     */
+    public function filter(string $task_status): View
+    {
+        $tasks = Task::where('status', $task_status)->paginate(5);
+        return view('tasks.index', ['tasks' => $tasks]);
     }
 }

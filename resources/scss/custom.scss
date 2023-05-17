@@ -7,7 +7,7 @@
 // Create your own map
 
 $custom-colors: (
-  "clr-navbar": #008985,
+	"clr-navbar": #008985,
 	"clr-completed": #00a128,
 	"clr-undone": #e34141,
 	"clr-inprogress": #fadc33,
@@ -24,4 +24,3 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 
 @import "../node_modules/bootstrap/scss/bootstrap";
-
